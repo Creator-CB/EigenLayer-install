@@ -16,10 +16,8 @@ function line {
 }
 
 function install_go {
-    sudo apt-get update -y && sudo apt-get upgrade -y && wget https://dl.google.com/go/go1.13.5.linux-amd64.tar.gz && sudo tar -C /usr/local/ -xzf go1.13.5.linux-amd64.tar.gz && cd /usr/local/ && echo $PATH 
+    sudo apt-get update -y && sudo apt-get upgrade -y 
 
-    sudo apt update
-    sudo apt upgrade
     wget https://dl.google.com/go/go1.13.5.linux-amd64.tar.gz
     sudo tar -C /usr/local/ -xzf go1.13.5.linux-amd64.tar.gz
     cd /usr/local/
@@ -38,7 +36,7 @@ function install_docker {
     sudo apt-get update
     sudo apt-get install ca-certificates curl gnupg
     sudo install -m 0755 -d /etc/apt/keyrings
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg -y
     sudo chmod a+r /etc/apt/keyrings/docker.gpg
 
     echo \
@@ -60,8 +58,6 @@ function install_eigenlayer {
     cd ~
     curl -sSfL https://raw.githubusercontent.com/layr-labs/eigenlayer-cli/master/scripts/install.sh | sh -s
     export PATH=$PATH:~/bin
-    eigenlayer operator keys create --key-type ecdsa name
-    eigenlayer operator keys create --key-type bls name
 }
 
 function eigenda_setup {
