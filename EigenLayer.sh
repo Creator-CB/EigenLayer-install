@@ -62,9 +62,8 @@ function install_docker {
 function install_eigenlayer {
     cd $HOME
     curl -sSfL https://raw.githubusercontent.com/layr-labs/eigenlayer-cli/master/scripts/install.sh | sh -s
-    export PATH=$PATH:$HOME/bin
-    eigenlayer operator keys create --key-type ecdsa name
-    eigenlayer operator keys create --key-type bls name
+    source $HOME/.profile  # Ensure the changes take effect in the current session
+    eigenlayer version  # Check Eigenlayer version
 }
 
 function eigenda_setup {
