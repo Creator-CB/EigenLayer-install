@@ -59,6 +59,15 @@ function install_docker {
     docker run hello-world
 }
 
+
+function eigenda_setup {
+    cd $HOME
+    git clone https://github.com/Layr-Labs/eigenda-operator-setup.git
+    cd eigenda-operator-setup
+    cp .env.example .env
+    cd
+}
+
 function install_eigenlayer {
     cd $HOME
     curl -sSfL https://raw.githubusercontent.com/layr-labs/eigenlayer-cli/master/scripts/install.sh | sh -s
@@ -66,20 +75,13 @@ function install_eigenlayer {
     eigenlayer version  # Check Eigenlayer version
 }
 
-function eigenda_setup {
-    cd $HOME
-    git clone https://github.com/Layr-Labs/eigenda-operator-setup.git
-    cd eigenda-operator-setup
-    cp .env.example .env
-}
-
 function main {
     colors
     logo
     install_go
     install_docker
-    install_eigenlayer
     eigenda_setup
+    install_eigenlayer 
 }
 
 main
