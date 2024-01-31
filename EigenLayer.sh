@@ -16,15 +16,17 @@ function line {
 }
 
 function install_go {
-    sudo apt-get update -y && sudo apt-get upgrade -y 
+    sudo apt-get update -y && sudo apt-get upgrade -y && wget https://dl.google.com/go/go1.13.5.linux-amd64.tar.gz && sudo tar -C $HOME/ -xzf go1.13.5.linux-amd64.tar.gz && cd $HOME/ && echo $PATH 
 
+    sudo apt update
+    sudo apt upgrade
     wget https://dl.google.com/go/go1.13.5.linux-amd64.tar.gz
-    sudo tar -C /usr/local/ -xzf go1.13.5.linux-amd64.tar.gz
-    cd /usr/local/
+    sudo tar -C $HOME/ -xzf go1.13.5.linux-amd64.tar.gz
+    cd $HOME/
     echo $PATH
 
-    echo 'export PATH=$PATH:/usr/local/go/bin' | sudo tee -a $HOME/.profile
-    echo 'export PATH=$PATH:~/bin' | sudo tee -a $HOME/.profile
+    echo 'export PATH=$PATH:$HOME/go/bin' >> $HOME/.profile
+    echo 'export PATH=$PATH:$HOME/bin' >> $HOME/.profile
 
     source $HOME/.profile
 
@@ -33,7 +35,6 @@ function install_go {
 }
 
 function install_docker {
-   
     sudo apt-get update
     sudo apt-get install -y \
         apt-transport-https \
@@ -59,13 +60,15 @@ function install_docker {
 }
 
 function install_eigenlayer {
-    cd ~
+    cd $HOME
     curl -sSfL https://raw.githubusercontent.com/layr-labs/eigenlayer-cli/master/scripts/install.sh | sh -s
-    export PATH=$PATH:~/bin
+    export PATH=$PATH:$HOME/bin
+    eigenlayer operator keys create --key-type ecdsa name
+    eigenlayer operator keys create --key-type bls name
 }
 
 function eigenda_setup {
-    cd ~
+    cd $HOME
     git clone https://github.com/Layr-Labs/eigenda-operator-setup.git
     cd eigenda-operator-setup
     cp .env.example .env
@@ -81,3 +84,4 @@ function main {
 }
 
 main
+
