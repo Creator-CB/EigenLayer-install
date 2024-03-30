@@ -64,7 +64,7 @@ function install_eigenlayer {
 function eigenda_setup {
     cd ~
     git clone https://github.com/Layr-Labs/eigenda-operator-setup.git
-    cd eigenda-operator-setup
+    cd eigenda-operator-setup/holesky
     cp .env.example .env
 }
 
