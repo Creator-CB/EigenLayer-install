@@ -18,8 +18,8 @@ function line {
 function install_go {
     sudo apt-get update -y && sudo apt-get upgrade -y
 
-    wget https://dl.google.com/go/go1.13.5.linux-amd64.tar.gz
-    sudo tar -C /usr/local/ -xzf go1.13.5.linux-amd64.tar.gz
+    wget https://go.dev/dl/go1.21.7.linux-amd64.tar.gz
+    sudo tar -C /usr/local/ -xzf go1.21.7.linux-amd64.tar.gz
     cd /usr/local/
     echo $PATH
 
